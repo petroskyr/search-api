@@ -62,17 +62,17 @@ To run a test server:
 $ gradle bootRun
 
 To send a POST request:
-$ curl -v --header "Content-Type application:json" --data '{"entry":"Any arbitrary text...","term":"searchTerm" }' http://localhost:8080/search
+$ curl -v --header "Content-Type: application/json" --data '{"entry":"Any arbitrary text...","term":"searchTerm" }' http://localhost:8080/search
 
-$ curl -v --header "Content-Type application:json" --data '{"entry":"Bat man. Who is bat man? Can Batman put the Badman in the can? Maybe the cat can.","term":"bat man" }' http://localhost:8080/search
+$ curl -v --header "Content-Type: application/json" --data '{"entry":"Bat man. Who is bat man? Can Batman put the Badman in the can? Maybe the cat can.","term":"bat man" }' http://localhost:8080/search
 
-$ curl -v --header "Content-Type application:json" --data '{"entry":"Simple example.","term":"example" }' http://localhost:8080/search
+$ curl -v --header "Content-Type: application/json" --data '{"entry":"Simple example.","term":"example" }' http://localhost:8080/search
 
-$ curl -v --header "Content-Type application:json" --data '{"entry":"Simple example of swap.","term":"on" }' http://localhost:8080/search
+$ curl -v --header "Content-Type: application/json" --data '{"entry":"Simple example of swap.","term":"on" }' http://localhost:8080/search
 
-$ curl -v --header "Content-Type application:json" --data '{"entry":"Simple example of delete.","term":"o" }' http://localhost:8080/search
+$ curl -v --header "Content-Type: application/json" --data '{"entry":"Simple example of delete.","term":"o" }' http://localhost:8080/search
 
-$ curl -v --header "Content-Type application:json" --data '{"entry":"Simple example of insert.","term":"off" }' http://localhost:8080/search
+$ curl -v --header "Content-Type: application/json" --data '{"entry":"Simple example of insert.","term":"off" }' http://localhost:8080/search
 
 
 A batch script could be written to perform automated testing against the test server. I have not yet learned how to unit test using gradle, but running the command "gradle tasks" shows that if there are units tests, it would be able to run them. 
