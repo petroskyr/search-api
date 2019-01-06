@@ -56,8 +56,8 @@ public class Search {
 	// attmepting to isolate words from the text and individually
 	// search them for the search-term would prove more difficult.
 
-	int i = 0;
-	int end = text.length() - term.length() + 2;
+	int i = 0; // index into text, from which the search begins.
+	int end = text.length() - term.length() + 2; // searching into text at or beyond this index is fruitless - there would need to be at least 2 edits to match the search term.
 	while(i < end && Character.isWhitespace(text.charAt(i))) {
 	    i++;
 	}
@@ -65,7 +65,7 @@ public class Search {
 	while (i < end) {
 	    
 	    int discrepancies = 0;
-	    int j = 0;
+	    int j = 0; // index into term.
 	    
 	    while (j < term.length() && i + j < text.length() && discrepancies == 0) {
 		if (term.charAt(j) != text.charAt(i + j)) {
@@ -74,7 +74,7 @@ public class Search {
 		    j++;
 		}
 	    }
-	    
+
 	    if (discrepancies == 0) {
 		if (j == term.length()) {
 		    if (!mustEndOnWordBoundary || isWordEndBoundary(text, i + j)) {
@@ -92,6 +92,13 @@ public class Search {
 		    String similar = text.substring(i, i + j);
 		    similarHits.put(similar, similarHits.getOrDefault(similar, 0) + 1);
 		}
+	    } else if (j == term.length() - 1 && isWordEndBoundary(text, i + j)) {
+		// Similar match, ex: term: Word, text: "Wor XXXXX"
+		// In this case, the loop ended because the last character in
+		// the term lined up with a word end boundary. Just call this
+		// a similar match, and move on in the search.
+		String similar = text.substring(i, i + j);
+		similarHits.put(similar, similarHits.getOrDefault(similar, 0) + 1);
 	    } else if (discrepancies == 1) {
 		// Need to simulate swap, delete, insert operations and
 		// check for a similar match. No hope for an exact match anymore.
